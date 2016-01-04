@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="dist/css/style.css">
+</head>
+<body>
+<div class="main">
+	<h1>Ujin Buttons</h1>
+	<div class="row-12">
+		<div class="col-4" >
+			<div class="button ucb ucb-fly" data-appear="up" data-dissapear="up">LetsFlyUp</div>
+		</div>
+		<div class="col-4" >
+			<div class="button ucb ucb-fly" data-appear="down" data-dissapear="down">LetsFlyDown</div>
+		</div>
+		<div class="col-4" >
+			<div class="button ucb ucb-fly" data-appear="up" data-dissapear="down">UpWave</div>
+		</div>
+		<div class="col-4" >
+			<div class="button ucb ucb-fly" data-appear="down" data-dissapear="up">DownWave</div>
+		</div>
+		<div class="col-4" >
+			<div class="button ucb ucb-fly" data-appear="flip" >Flippers</div>
+		</div>
+	</div>
+
+</div>
+</body>
+<script type="text/javascript">
+
+var ucb = function(){
+	//A Flying Text Effect
+	var _this = this;
+	this.letterTransition = 20;
+	this.replaceElementWithAwesome = function(element){
+		var newEl = element.cloneNode(true);
+		var string = newEl.textContent;
+		newEl.textContent = '';
+		var stringArr = string.split('');
+		var spanAppear = document.createElement('span');
+		spanAppear.className = 's-ap';
+		for(var j in stringArr){
+			var letterSpan = document.createElement('span');
+			letterSpan.textContent = stringArr[j];
+			spanAppear.appendChild(letterSpan);
+		}
+		var spanDissapear = spanAppear.cloneNode(true);
+		spanDissapear.className = 's-ds';
+		newEl.appendChild(spanAppear);
+		newEl.appendChild(spanDissapear);
+		element
+				.parentElement
+				.replaceChild(newEl,element);
+		return newEl;
+	};
+
+	this.flyingText = function(){
+		var letterCasted = document.querySelectorAll('.ucb.ucb-fly');
+		for(var i=0;i<letterCasted.length;i++){
+				var	el = this.replaceElementWithAwesome(letterCasted[i]);
+
+			el.addEventListener('mouseenter',function(e){
+				var el = e.target;
+				var appearClass = 'a-'+el.dataset.appear;
+				var dissapearClass = 'd-'+el.dataset.dissapear;
+				el.leaveInterval&&clearTimeout(el.enterInterval);
+				var spanAppearLetters = el
+						.getElementsByClassName('s-ap')[0]
+						.getElementsByTagName('span');
+				var spanDissapearLetters = el
+						.getElementsByClassName('s-ds')[0]
+						.getElementsByTagName('span');
+				var counter = 0;
+				el.enterInterval = setInterval(function(){
+					var currentAppear = spanAppearLetters.item(counter);
+					currentAppear.className = appearClass;
+					var currentDissapear = spanDissapearLetters.item(counter);
+					currentDissapear.className = dissapearClass;
+					counter++;
+					if(counter===spanAppearLetters.length){
+						clearTimeout(el.enterInterval);
+					}
+				},_this.letterTransition)
+			});
+			el.addEventListener('mouseleave',function(e){
+				var el = e.target;
+				var appearClass = 'a-'+el.dataset.appear;
+				var dissapearClass = 'd-'+el.dataset.dissapear;
+				clearTimeout(el.enterInterval);
+				var spanAppearLetters = el
+						.getElementsByClassName('s-ap')[0]
+						.getElementsByClassName(appearClass);
+				var spanDissapearLetters = el
+						.getElementsByClassName('s-ds')[0]
+						.getElementsByClassName(dissapearClass);
+				var counter = spanAppearLetters.length-1;
+				if(counter>=0){
+					el.leaveInterval = setInterval(function(){
+						var currentAppear = spanAppearLetters.item(counter);
+						currentAppear.className = '';
+						var currentDissapear = spanDissapearLetters.item(counter);
+						currentDissapear.className = '';
+						counter--;
+						if(counter<0){
+							clearTimeout(el.leaveInterval);
+						}
+					},_this.letterTransition);
+				}
+			});
+		}
+	}.bind(this);
+
+	this.flyingText();
+}
+var Ucb = new ucb();
+
+</script>
+</html>

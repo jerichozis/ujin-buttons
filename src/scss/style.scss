@@ -1,0 +1,102 @@
+@import 'bourbon';
+@import 'neat';
+body{ 
+	font-family: 'Lato';
+}
+$col1	 :	#505160;
+$col2 	 :	#68829E;
+$col3	 :	#AEBD38; 
+$col4	 :	#598234;
+ 
+body{
+	background-color:#AEBD38; 
+} 
+h1{
+	color:black;
+}  
+.main{
+	@include outer-container;
+  	.row-12{
+	  @include span-columns(12);
+	  .col-3{
+		@include span-columns(3 of 12);
+		padding: 15px;
+		margin:0;
+	  }
+	  .col-4{
+		@include span-columns(4 of 12);
+		margin:0;
+		padding: 15px;
+	  }
+	}
+
+}
+.ucb{
+	padding:15px;
+	background-color:$col3;
+	color:lighten($col4,50%);
+	text-align:center;
+	font-weight: bold;
+	border:4px solid lighten($col1,60%);
+	cursor:pointer;
+	overflow:hidden;
+  	font-size:20px;
+    .s-ap, .s-ds{
+	   clear:left;
+	  display:inline-block;
+
+	  span{
+		display:inline-block;
+		//will-change:transform;
+		transition:0.2s ease all;
+	  }
+	}
+
+  	.s-ap{
+	  transform:translateX(50%);
+	}
+  	.s-ds{
+	  transform:translateX(-50%);
+	}
+}
+
+.s-ap{
+  .goup{
+	transform:translateY(-50px);
+  }
+}
+//Flying Letters to UP
+[data-appear='up']{
+  .s-ap{
+	.a-up{
+	  transform:translateY(-50px);
+	}
+  }
+
+}
+[data-dissapear='up']{
+  .s-ds{
+	transform:translateY(50px) translateX(-50%);
+	.d-up{
+	  transform:translateY(-50px);
+	}
+  }
+}
+
+//Flying Letters to DOWN
+
+[data-appear='down']{
+  .s-ap{
+	.a-down{
+	  transform:translateY(50px);
+	}
+  }
+}
+[data-dissapear='down']{
+  .s-ds{
+	transform:translateY(-50px) translateX(-50%);
+	.d-down{
+	  transform:translateY(50px);
+	}
+  }
+}
