@@ -5,14 +5,14 @@ body{
 }
 $col1	 :	#505160;
 $col2 	 :	#68829E;
-$col3	 :	#AEBD38; 
+$col3	 :	black;
 $col4	 :	#598234;
  
 body{
-	background-color:#AEBD38; 
+	background-color:$col3;
 } 
 h1{
-	color:black;
+	color:white;
 }  
 .main{
 	@include outer-container;
@@ -31,6 +31,7 @@ h1{
 	}
 
 }
+
 .ucb{
 	padding:15px;
 	background-color:$col3;
@@ -65,6 +66,7 @@ h1{
 	transform:translateY(-50px);
   }
 }
+
 //Flying Letters to UP
 [data-appear='up']{
   .s-ap{
@@ -72,7 +74,6 @@ h1{
 	  transform:translateY(-50px);
 	}
   }
-
 }
 [data-dissapear='up']{
   .s-ds{
@@ -99,4 +100,33 @@ h1{
 	  transform:translateY(50px);
 	}
   }
+}
+
+//Fly In
+[data-appear='fly-in']{
+  .s-ap{
+	.a-fly-in{
+	  transform:scale(5);
+	  opacity:0;
+	}
+  }
+}
+
+[data-dissapear='fly-in']{
+  .s-ds{
+	transform:translateX(-50%);
+	span{
+		transform:scale(0.5);
+	  	opacity:0;
+		&.d-fly-in{
+		  transform:scale(1) ;
+		  opacity:1;
+		}
+	}
+  }
+}
+
+//singler flip
+[data-change='flip']{
+  
 }

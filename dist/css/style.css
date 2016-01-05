@@ -8,10 +8,10 @@ body {
   font-family: 'Lato'; }
 
 body {
-  background-color: #AEBD38; }
+  background-color: black; }
 
 h1 {
-  color: black; }
+  color: white; }
 
 .main {
   max-width: 68em;
@@ -49,7 +49,7 @@ h1 {
 
 .ucb {
   padding: 15px;
-  background-color: #AEBD38;
+  background-color: black;
   color: #daeacb;
   text-align: center;
   font-weight: bold;
@@ -86,3 +86,16 @@ h1 {
   transform: translateY(-50px) translateX(-50%); }
   [data-dissapear='down'] .s-ds .d-down {
     transform: translateY(50px); }
+
+[data-appear='fly-in'] .s-ap .a-fly-in {
+  transform: scale(5);
+  opacity: 0; }
+
+[data-dissapear='fly-in'] .s-ds {
+  transform: translateX(-50%); }
+  [data-dissapear='fly-in'] .s-ds span {
+    transform: scale(0.5);
+    opacity: 0; }
+    [data-dissapear='fly-in'] .s-ds span.d-fly-in {
+      transform: scale(1);
+      opacity: 1; }
