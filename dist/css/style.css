@@ -8,9 +8,7 @@ body {
   font-family: 'Lato'; }
 
 body {
-  background-color: black; }
-
-h1 {
+  background-color: black;
   color: white; }
 
 .main {
@@ -57,10 +55,10 @@ h1 {
   cursor: pointer;
   overflow: hidden;
   font-size: 20px; }
-  .ucb .s-ap, .ucb .s-ds {
+  .ucb .s-ap, .ucb .s-ds, .ucb .s-trans {
     clear: left;
     display: inline-block; }
-    .ucb .s-ap span, .ucb .s-ds span {
+    .ucb .s-ap span, .ucb .s-ds span, .ucb .s-trans span {
       display: inline-block;
       transition: 0.2s ease all; }
   .ucb .s-ap {
@@ -99,3 +97,78 @@ h1 {
     [data-dissapear='fly-in'] .s-ds span.d-fly-in {
       transform: scale(1);
       opacity: 1; }
+
+[data-appear='fly-out'] .s-ap .a-fly-out {
+  transform: scale(0);
+  opacity: 0; }
+
+[data-dissapear='fly-out'] .s-ds {
+  transform: translateX(-50%); }
+  [data-dissapear='fly-out'] .s-ds span {
+    transform: scale(5);
+    opacity: 0; }
+    [data-dissapear='fly-out'] .s-ds span.d-fly-out {
+      transform: scale(1);
+      opacity: 1; }
+
+[data-appear='jackpot'] .s-ap .a-jackpot {
+  transform: rotateX(90deg);
+  transform-origin: 0 0; }
+
+[data-dissapear='jackpot'] .s-ds {
+  transform: translateX(-50%); }
+  [data-dissapear='jackpot'] .s-ds span {
+    transform: rotateX(-90deg);
+    transform-origin: 0 100%; }
+    [data-dissapear='jackpot'] .s-ds span.d-jackpot {
+      transform: rotateX(0deg); }
+
+@keyframes zoom-in {
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
+  50% {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2); }
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); } }
+
+[data-change='zoom-in'] .s-trans span.c-zoom-in {
+  -webkit-animation: zoom-in 0.2s ease-in;
+  -moz-animation: zoom-in 0.2s ease-in;
+  animation: zoom-in 0.2s ease-in; }
+
+@keyframes zoom-out {
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
+  50% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); } }
+
+[data-change='zoom-out'] .s-trans span.c-zoom-out {
+  -webkit-animation: zoom-out 0.2s ease-in;
+  -moz-animation: zoom-out 0.2s ease-in;
+  animation: zoom-out 0.2s ease-in; }
