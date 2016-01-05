@@ -48,7 +48,7 @@ var ucb = function(){
         newEl._text = newEl.textContent;
         newEl.textContent = '';
         _this.pushSpan(newEl,'s-ap');
-         _this.pushSpan(newEl,'s-ds');
+        _this.pushSpan(newEl,'s-ds');
         element
             .parentElement
             .replaceChild(newEl,element);

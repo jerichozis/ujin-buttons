@@ -3,6 +3,9 @@
 body{ 
 	font-family: 'Lato';
 }
+
+$time 	: 0.3s;
+
 $col1	 :	#505160;
 $col2 	 :	#68829E;
 $col3	 :	black;
@@ -47,7 +50,7 @@ body{
 	  span{
 		display:inline-block;
 		//will-change:transform;
-		transition:0.2s ease all;
+		transition:$time ease all;
 	  }
 	}
 
@@ -146,23 +149,44 @@ body{
   }
 }
 
-//jackpot
-[data-appear='jackpot']{
-  .s-ap{
-	.a-jackpot{
-	  transform:rotateX(90deg);
-	  transform-origin:(0 0);
-	}
+@keyframes jackpot-appear {
+  from{
+	transform:rotateX(0deg) perspective(1000px);
+  }
+  to{
+	transform:rotateX(90deg) perspective(1000px);
   }
 }
+
+@keyframes jackpot-dissapear {
+  from{
+	transform:rotateX(-90deg) perspective(1000px);
+  }
+  to{
+	transform:rotateX(0deg) perspective(1000px);
+  }
+}
+
+[data-appear='jackpot']{
+  .s-ap{
+	span{
+	  transform-origin:(0 0);
+	  &.a-jackpot{
+		@include animation(jackpot-appear cubic-bezier(0, 1.01, 1, 1) $time );
+	  }
+	}
+
+  }
+}
+
 [data-dissapear='jackpot']{
   .s-ds{
 	transform:translateX(-50%);
 	span{
-	  transform:rotateX(-90deg);
 	  transform-origin:(0 100%);
 	  &.d-jackpot{
-		transform:rotateX(0deg);
+		transform-style:preserve-3d;
+		@include animation(jackpot-dissapear cubic-bezier(1, 0, 1, 1) $time );
 	  }
 	}
   }
@@ -184,12 +208,13 @@ body{
   .s-trans{
 	span{
 	  &.c-zoom-in{
-		@include animation(zoom-in 0.2s ease-in);
+		@include animation(zoom-in $time ease-in);
 	  }
 	}
 
   }
 }
+
 //singler zoom-out
 @keyframes zoom-out {
   0%   {
@@ -207,7 +232,7 @@ body{
   .s-trans{
 	span{
 	  &.c-zoom-out{
-		@include animation(zoom-out 0.2s ease-in);
+		@include animation(zoom-out $time ease-in);
 	  }
 	}
 
